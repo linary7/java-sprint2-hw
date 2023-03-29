@@ -8,7 +8,7 @@ public class MonthlyReport {
     ContentReader contentReader = new ContentReader();
 
 
-    public void readMonthlyReports () {
+    public void readMonthlyReports() {
         for (int i = 1; i < NUMBER_OF_MONTH_REPORTS + 1; i++) {
             List<String> monthlyReportContent = contentReader.readFileContents("resources/m.20210" + i + ".csv");
             monthlyReports.add(monthlyReportContent);
@@ -19,7 +19,7 @@ public class MonthlyReport {
                 String line = monthlyReport.get(i);
                 String[] content = line.split(",");
                 String itemName = content[0];
-                boolean isExpense  = Boolean.parseBoolean(content[1]);
+                boolean isExpense = Boolean.parseBoolean(content[1]);
                 int quantity = Integer.parseInt(content[2]);
                 double sumOfOne = Double.parseDouble(content[3]);
                 SpendingsByItem spendingsByItem = new SpendingsByItem(itemName, isExpense, quantity, sumOfOne);
@@ -29,7 +29,7 @@ public class MonthlyReport {
         }
     }
 
-    public void printMonthlyReports () {
+    public void printMonthlyReports() {
         for (int i = 0; i < monthlyReportsContents.size(); i++) {
             System.out.println("Отчёт за месяц номер " + (i + 1));
             double maxExpense = 0.0;
@@ -37,12 +37,12 @@ public class MonthlyReport {
             double biggestIncome = 0.0;
             String biggestIncomeName = null;
             for (SpendingsByItem line : monthlyReportsContents.get(i)) {
-                if (!line.isExpense && (line.sumOfOne*line.quantity) > biggestIncome) {
-                    biggestIncome = line.sumOfOne*line.quantity;
+                if (!line.isExpense && (line.sumOfOne * line.quantity) > biggestIncome) {
+                    biggestIncome = line.sumOfOne * line.quantity;
                     biggestIncomeName = line.itemName;
                 }
-                if (line.isExpense && (line.quantity*line.sumOfOne) > maxExpense) {
-                    maxExpense = line.sumOfOne* line.quantity;
+                if (line.isExpense && (line.quantity * line.sumOfOne) > maxExpense) {
+                    maxExpense = line.sumOfOne * line.quantity;
                     maxExpenseName = line.itemName;
                 }
             }

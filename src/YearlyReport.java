@@ -3,7 +3,7 @@ import java.util.List;
 
 public class YearlyReport {
 
-    public ArrayList<MonthlySpendings> yearlyReportContent = new ArrayList<MonthlySpendings>();
+    public ArrayList<MonthlySpendings> yearlyReportContent = new ArrayList<>();
     List<String> yearlyReport;
     ContentReader contentReader = new ContentReader();
 
@@ -28,15 +28,11 @@ public class YearlyReport {
         double expenseSum = 0.0;
         double incomeSum = 0.0;
         for (MonthlySpendings monthlySpendings : yearlyReportContent) {
-            double expense = 0.0;
-            double income = 0.0;
             if (monthlySpendings.isExpense) {
-                expense = monthlySpendings.amount;
+                expenseSum += monthlySpendings.amount;
             } else {
-                income = monthlySpendings.amount;
+                incomeSum += monthlySpendings.amount;
             }
-            expenseSum += expense;
-            incomeSum += income;
         }
 
         ArrayList<Double> expenses = new ArrayList<>();
